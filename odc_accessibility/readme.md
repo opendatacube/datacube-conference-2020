@@ -21,3 +21,4 @@ Develop new and existing tools for notebook interactivity and visualisation - re
 - Improve area selection code - [github](https://github.com/GeoscienceAustralia/dea-notebooks/pull/482)
 - Add timeouts to interactive tools to allow testing with no user input - [github](https://github.com/opendatacube/odc-tools/issues/31)
 - Integrate new functionality into a selection of existing notebooks
+- Interactive training data selector within notebook - Gabrielle
