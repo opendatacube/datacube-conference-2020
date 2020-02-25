@@ -10,7 +10,7 @@ Develop new and existing tools for notebook interactivity and visualisation - re
 - email list blacklist - stop the bitcoin miners
 - network white list
 - iframe welcome page
-- Container accuracte memory settings
+- ~Container accuracte memory settings~ DONE!
 ### Viz and Interactivity
 - Function: reprojection for leaflet
 - Function: Convert arbitrary input into RGB
