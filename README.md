@@ -10,3 +10,7 @@ This repository is a space where development stream pitches are stored, and the 
 | Alex          |         | [Datacube Explorer STAC and More](./datacube_explorer/readme.md)                     |
 | Ben           |         | [Climate (weather) data](./climate_data/readme.md)                                   |
 | Tisham        |         | [Externalize Spatio-Temporal Extents of Datasets](./externalize_stac_extents/readme.md) |
+
+Dr Robert Woodcock's presentation on [State of the Cube](https://drive.google.com/file/d/11DY1P-PWcXf-BE4yJBwYx5L9WDQsfSTk/view?usp=sharing)
+
+Nikita Gandhi's presentation on [Terraform AWS ODC 1.8 RC](https://drive.google.com/file/d/1RKqtgqmIUxsUcT55l0P9Y41fZT9tYSub/view?usp=sharing)
