@@ -22,3 +22,6 @@ Develop new and existing tools for notebook interactivity and visualisation - re
 - Add timeouts to interactive tools to allow testing with no user input - [github](https://github.com/opendatacube/odc-tools/issues/31)
 - Integrate new functionality into a selection of existing notebooks
 - Interactive training data selector within notebook - Gabrielle
+- Seperate map creation from existing functions.
+- Polygon creation on the map
+
