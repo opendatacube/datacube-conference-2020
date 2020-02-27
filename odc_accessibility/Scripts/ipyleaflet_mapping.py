@@ -94,15 +94,15 @@ import datacube
 import odc.ui
 from ipywidgets import IntSlider, widgets as w
 
-def create_rgb_image_layer(data, layername, crs='epsg:3857', clamp=(3000)):
+def create_rgb_image_layer(data, layername, output_crs='epsg:3857', clamp=(3000)):
     """
-    Convert values in single band xarray to colormap values
-    Can accept multiple time steps
-    da - xarray.DataArray
-    cmap - desired colormapping
-    vmin / vmax - values for normalisation
+    Create a rgb image from a xarray with red, green and blue bands
+    data - xarray.DataArray
+    layername - the label of the layer to be used on the map
+    output_crs - The crs to be reprojected to. 
+    clamp - The clamp to be used for the data
     """
-    reprojected_data = reproject(data, crs, resampling='nearest')
+    reprojected_data = reproject(data, output_crs, resampling='nearest')
     # Mask out invalid data
     reprojected_data = datacube.storage.masking.mask_invalid_data(reprojected_data)
     # Create the image, requires a clamp due to high values
@@ -111,15 +111,16 @@ def create_rgb_image_layer(data, layername, crs='epsg:3857', clamp=(3000)):
 
 
 
-def create_single_band_image_layer(data, layername, crs='epsg:3857', cmap='Greens', vmin=0, vmax=1):
+def create_single_band_image_layer(data, layername, output_crs='epsg:3857', cmap='Greens', vmin=0, vmax=1):
     """
-    Convert values in single band xarray to colormap values
-    Can accept multiple time steps
-    da - xarray.DataArray
+    Create a colourmaped image from a single band xarray.
+    data - xarray.DataArray
+    layername - the label of the layer to be used on the map
+    output_crs - The crs to be reprojected to. 
     cmap - desired colormapping
     vmin / vmax - values for normalisation
     """
-    reprojected_data = reproject(data, crs, resampling='nearest')
+    reprojected_data = reproject(data, output_crs, resampling='nearest')
     # Mask out invalid data
     #reprojected_data = datacube.storage.masking.mask_invalid_data(reprojected_data)
     # Colorize
@@ -130,7 +131,13 @@ def create_single_band_image_layer(data, layername, crs='epsg:3857', cmap='Green
     
 from datacube.utils.geometry import BoundingBox
 
-def add_layer_to_map(image, m, slider):
+def add_layer_to_map(image, m, slider=None):
+    """
+    Add the layer to passed in map object.
+    image - pre-created image overlay object
+    m - map object
+    slider - slider object
+    """
     # Work out the required map zoom based on the bounding box
     (top, right), (bottom, left) = image.bounds
     bounding_box = BoundingBox(left, bottom, right, top)
@@ -140,6 +147,7 @@ def add_layer_to_map(image, m, slider):
     # Center map on new image
     m.center = (bounding_box[1], bounding_box[0])
     # Add the opacity slider to the new image
-    w.jslink((slider, 'value'),         
-             (image, 'opacity') )
+    if slider:
+        w.jslink((slider, 'value'),         
+                 (image, 'opacity') )
     m.add_layer(image)
